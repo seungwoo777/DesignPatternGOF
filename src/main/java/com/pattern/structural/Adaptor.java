@@ -19,8 +19,8 @@ public class Adaptor {
     public static void main(String[] args) {
 
         // 1. 어댑터 생성
-        ObjectTarget adaptor = new ObjectAdaptor(new ObjectService());
-        ClassTarget adaptor2 = new ClassAdaptor();
+        ObjectTarget adaptor = new ObjectAdapter(new ObjectService());
+        ClassTarget adaptor2 = new ClassAdapter();
 
         // 2. 인터페이스의 스펙에 따라 메소드를 실행하면 기존 서비스의 메소드가 실행
         adaptor.method(1);
@@ -53,13 +53,13 @@ interface ObjectTarget {
 }
 
 
-// Adaptor : Adaptee 서비스를 클라이언트에서 사용하게 할 수 있도록 호환 처리 해주는 어댑터
-class ObjectAdaptor implements ObjectTarget  {
+// Adapter : Adaptee 서비스를 클라이언트에서 사용하게 할 수 있도록 호환 처리 해주는 어댑터
+class ObjectAdapter implements ObjectTarget  {
 
     ObjectService adaptee; // composition 으로 Service 객체를 클래스 필드로
 
     // 어댑터가 인스턴스화 되면 호환시킬 기존 서비스를 설정
-    ObjectAdaptor(ObjectService adaptee) {
+    ObjectAdapter(ObjectService adaptee) {
         this.adaptee = adaptee;
     }
 
@@ -92,8 +92,8 @@ interface ClassTarget {
     void method(int data);
 }
 
-// Adaptor : Adaptee 서비스를 클라이언트에서 사용하게 할 수 있도록 호환처리 해주는 어댑터
-class ClassAdaptor extends ClassService implements ClassTarget {
+// Adapter : Adaptee 서비스를 클라이언트에서 사용하게 할 수 있도록 호환처리 해주는 어댑터
+class ClassAdapter extends ClassService implements ClassTarget {
 
     // 어댑터의 메소드가 호출되면, 부모 클래스 Adaptee 의 메소드를 호출
     public void method(int data) {
